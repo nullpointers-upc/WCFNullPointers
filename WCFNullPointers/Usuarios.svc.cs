@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using WCFNullPointers.Dominio;
+using WCFNullPointers.Persistencia;
 
 namespace WCFNullPointers
 {
@@ -11,8 +13,15 @@ namespace WCFNullPointers
     // NOTE: In order to launch WCF Test Client for testing this service, please select Usuarios.svc or Usuarios.svc.cs at the Solution Explorer and start debugging.
     public class Usuarios : IUsuarios
     {
-        public void DoWork()
+        private UsuarioDAO usuarioDAO = new UsuarioDAO();
+        public Usuario CrearUsuario(Usuario usuarioACrear)
         {
+            return usuarioDAO.Crear(usuarioACrear);
+        }
+
+        public Usuario ObtenerUsuario(int id)
+        {
+            return usuarioDAO.Obtener(id);
         }
     }
 }

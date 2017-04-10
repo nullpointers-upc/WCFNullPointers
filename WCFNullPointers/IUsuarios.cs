@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using WCFNullPointers.Dominio;
 
 namespace WCFNullPointers
 {
@@ -12,6 +13,9 @@ namespace WCFNullPointers
     public interface IUsuarios
     {
         [OperationContract]
-        void DoWork();
+        Usuario CrearUsuario(Usuario usuarioACrear);
+
+        [OperationContract]
+        Usuario ObtenerUsuario(int id);
     }
 }

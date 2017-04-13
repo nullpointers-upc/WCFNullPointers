@@ -17,5 +17,9 @@ namespace WCFNullPointers
 
         [OperationContract]
         string ObtenerUsuario(int id);
+
+        [OperationContract]
+        string LoginUsuario(string codigo, string contrasena);
+
     }
 }

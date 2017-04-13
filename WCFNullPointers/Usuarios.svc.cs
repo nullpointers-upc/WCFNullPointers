@@ -23,5 +23,10 @@ namespace WCFNullPointers
         {
             return usuarioDAO.Obtener(id);
         }
+
+        public string LoginUsuario(string codigo, string contrasena)
+        {
+            return usuarioDAO.Login(codigo, contrasena);
+        }
     }
 }

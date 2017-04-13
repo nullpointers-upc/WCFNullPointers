@@ -63,6 +63,51 @@ namespace WCFNullPointers.Persistencia
                             {
                                 usuarioEncontrado = new Usuario()
                                 {
+                                    Id = (int)resultado["id"],
+                                    Codigo = (string)resultado["codigo"],
+                                    Contrasena = (string)resultado["contrasena"],
+                                    Dni = (string)resultado["dni"],
+                                    Nombre = (string)resultado["nombre"],
+                                    Apellidos = (string)resultado["apellidos"],
+                                    Telefono = (string)resultado["telefono"]
+                                };
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    respuesta.code = 200;
+                    respuesta.error = e.ToString();
+                    return new JavaScriptSerializer().Serialize(respuesta);
+                }
+                respuesta.code = 100;
+                respuesta.data = new JavaScriptSerializer().Serialize(usuarioEncontrado);
+                conexion.Close();
+                return new JavaScriptSerializer().Serialize(respuesta);
+            }
+        }
+        public string Login(string codigo, string contrasena)
+        {
+            Usuario usuarioEncontrado = null;
+            Respuesta respuesta = new Respuesta();
+            string sql = "select * from usuarios where codigo = @codigo and contrasena = @contrasena";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                try
+                {
+                    conexion.Open();
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.Add(new MySqlParameter("@codigo", codigo));
+                        comando.Parameters.Add(new MySqlParameter("@contrasena", contrasena));
+                        using (MySqlDataReader resultado = comando.ExecuteReader())
+                        {
+                            if (resultado.Read())
+                            {
+                                usuarioEncontrado = new Usuario()
+                                {
+                                    Id = (int)resultado["id"],
                                     Codigo = (string)resultado["codigo"],
                                     Contrasena = (string)resultado["contrasena"],
                                     Dni = (string)resultado["dni"],

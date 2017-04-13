@@ -13,9 +13,9 @@ namespace WCFNullPointers
     public interface IUsuarios
     {
         [OperationContract]
-        Usuario CrearUsuario(Usuario usuarioACrear);
+        string CrearUsuario(Usuario usuarioACrear);
 
         [OperationContract]
-        Usuario ObtenerUsuario(int id);
+        string ObtenerUsuario(int id);
     }
 }

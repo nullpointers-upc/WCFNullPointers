@@ -17,3 +17,4 @@ c:\users\root\documents\visual studio 2015\Projects\WCFNullPointers\WCFNullPoint
 c:\users\root\documents\visual studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\Microsoft.ApplicationInsights.xml
 c:\users\root\documents\visual studio 2015\Projects\WCFNullPointers\WCFNullPointers\obj\Debug\WCFNullPointers.dll
 c:\users\root\documents\visual studio 2015\Projects\WCFNullPointers\WCFNullPointers\obj\Debug\WCFNullPointers.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\MySql.Data.dll

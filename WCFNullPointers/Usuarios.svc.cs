@@ -14,12 +14,12 @@ namespace WCFNullPointers
     public class Usuarios : IUsuarios
     {
         private UsuarioDAO usuarioDAO = new UsuarioDAO();
-        public Usuario CrearUsuario(Usuario usuarioACrear)
+        public string CrearUsuario(Usuario usuarioACrear)
         {
             return usuarioDAO.Crear(usuarioACrear);
         }
 
-        public Usuario ObtenerUsuario(int id)
+        public string ObtenerUsuario(int id)
         {
             return usuarioDAO.Obtener(id);
         }

@@ -1,69 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System.Linq;
 using System.Web;
 using WCFNullPointers.Dominio;
+using System.Web.Script.Serialization;
 
 namespace WCFNullPointers.Persistencia
 {
     public class UsuarioDAO
     {
-        private string CadenaConexion = "Data Source=(local);Initial Catalog=nullpointer;Integrated Security=SSPI;";
-        public Usuario Crear(Usuario usuarioACrear)
+        private string CadenaConexion = "datasource=localhost;database=nullpointers;userid=root";
+        public string Crear(Usuario usuarioACrear)
         {
-            Usuario usuarioCreado = null;
-            string sql = "insertUsuario";
-            int id;
-            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            long id;
+            Respuesta respuesta = new Respuesta();
+            string sql = "insert into usuarios (codigo, contrasena, dni, nombre, apellidos, telefono) values (@codigo, @contrasena, @dni, @nombre, @apellidos, @telefono)";
+
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                try
                 {
-                    comando.CommandType = CommandType.StoredProcedure;
-                    comando.Parameters.Add(new SqlParameter("@nombre", usuarioACrear.Nombre));
-                    comando.Parameters.Add(new SqlParameter("@clave", usuarioACrear.Clave));
-                    comando.Parameters.Add(new SqlParameter("@dni", usuarioACrear.Dni));
-                    comando.Parameters.Add(new SqlParameter("@telefono", usuarioACrear.Telefono));
-                    comando.Parameters.Add(new SqlParameter("@nombreCompleto", usuarioACrear.NombreCompleto));
-                    SqlParameter usuarioId = new SqlParameter("@id", SqlDbType.Int);
-                    usuarioId.Direction = ParameterDirection.Output;
-                    comando.Parameters.Add(usuarioId);
-                    comando.ExecuteNonQuery();
-                    id = (int)comando.Parameters["@id"].Value;
+                    conexion.Open();
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.Add(new MySqlParameter("@codigo", usuarioACrear.Codigo));
+                        comando.Parameters.Add(new MySqlParameter("@contrasena", usuarioACrear.Contrasena));
+                        comando.Parameters.Add(new MySqlParameter("@dni", usuarioACrear.Dni));
+                        comando.Parameters.Add(new MySqlParameter("@nombre", usuarioACrear.Nombre));
+                        comando.Parameters.Add(new MySqlParameter("@apellidos", usuarioACrear.Apellidos));
+                        comando.Parameters.Add(new MySqlParameter("@telefono", usuarioACrear.Telefono));
+                        comando.ExecuteNonQuery();
+                        id = comando.LastInsertedId;
+                    }
                 }
-                usuarioCreado = Obtener(id);
-                return usuarioCreado;
+                catch (Exception e)
+                {
+                    respuesta.code = 200;
+                    respuesta.error = e.ToString();
+                    return new JavaScriptSerializer().Serialize(respuesta);
+                }
+                conexion.Close();
+                return Obtener(id);
             }
         }
-        public Usuario Obtener(int id)
+        public string Obtener(long id)
         {
             Usuario usuarioEncontrado = null;
-            string sql = "select * from usuario where id = @id";
-            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            Respuesta respuesta = new Respuesta();
+            string sql = "select * from usuarios where id = @id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                try
                 {
-                    comando.Parameters.Add(new SqlParameter("@id", id));
-                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    conexion.Open();
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
                     {
-                        if (resultado.Read())
+                        comando.Parameters.Add(new MySqlParameter("@id", id));
+                        using (MySqlDataReader resultado = comando.ExecuteReader())
                         {
-                            usuarioEncontrado = new Usuario()
+                            if (resultado.Read())
                             {
-                                Nombre = (string)resultado["nombre"],
-                                Clave = (string)resultado["clave"],
-                                Dni = (string)resultado["dni"],
-                                Telefono = (string)resultado["telefono"],
-                                NombreCompleto = (string)resultado["nombreCompleto"]
-                            };
+                                usuarioEncontrado = new Usuario()
+                                {
+                                    Codigo = (string)resultado["codigo"],
+                                    Contrasena = (string)resultado["contrasena"],
+                                    Dni = (string)resultado["dni"],
+                                    Nombre = (string)resultado["nombre"],
+                                    Apellidos = (string)resultado["apellidos"],
+                                    Telefono = (string)resultado["telefono"]
+                                };
+                            }
                         }
                     }
                 }
+                catch (Exception e)
+                {
+                    respuesta.code = 200;
+                    respuesta.error = e.ToString();
+                    return new JavaScriptSerializer().Serialize(respuesta);
+                }
+                respuesta.code = 100;
+                respuesta.data = new JavaScriptSerializer().Serialize(usuarioEncontrado);
+                conexion.Close();
+                return new JavaScriptSerializer().Serialize(respuesta);
             }
-            return usuarioEncontrado;
         }
     }
 }

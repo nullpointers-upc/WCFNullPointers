@@ -12,14 +12,16 @@ namespace WCFNullPointers.Dominio
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string Nombre { get; set; }
+        public string Codigo { get; set; }
         [DataMember]
-        public string Clave { get; set; }
+        public string Contrasena { get; set; }
         [DataMember]
         public string Dni { get; set; }
         [DataMember]
-        public string Telefono { get; set; }
+        public string Nombre { get; set; }
         [DataMember]
-        public string NombreCompleto { get; set; }
+        public string Apellidos { get; set; }
+        [DataMember]
+        public string Telefono { get; set; }
     }
 }

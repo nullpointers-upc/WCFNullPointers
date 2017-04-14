@@ -27,7 +27,6 @@ namespace WCFNullPointers
             return categoriaDAO.Modificar(categoriaAModificar);
         }
         public void EliminarCategoria(int id)
-
         {
             categoriaDAO.Eliminar(id);
         }

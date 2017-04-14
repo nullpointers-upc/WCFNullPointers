@@ -14,19 +14,31 @@ namespace WCFNullPointers.Persistencia
         public string Crear(Categoria categoria)
         {
             long id;
+            Respuesta respuesta = new Respuesta();
             string sql = "insert into categorias (nombre, estado) values (@nombre, @estado)";
+
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
-                conexion.Open();
-                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                try
                 {
-                    comando.Parameters.Add(new MySqlParameter("@nombre", categoria.Nombre));
-                    comando.Parameters.Add(new MySqlParameter("@estado", categoria.Estado));
-                    comando.ExecuteNonQuery();
-                    id = comando.LastInsertedId;
+                    conexion.Open();
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.Add(new MySqlParameter("@nombre", categoria.Nombre));
+                        comando.Parameters.Add(new MySqlParameter("@estado", categoria.Estado));
+                        comando.ExecuteNonQuery();
+                        id = comando.LastInsertedId;
+                    }
+                }
+                catch (Exception e)
+                {
+                    respuesta.code = 200;
+                    respuesta.error = e.ToString();
+                    return new JavaScriptSerializer().Serialize(respuesta);
                 }
                 conexion.Close();
-                return Obtener(id);
+                //  return Obtener(id);
+                return "bingo";
             }
         }
 
@@ -57,7 +69,6 @@ namespace WCFNullPointers.Persistencia
                 return new JavaScriptSerializer().Serialize(categoriaEncontrado);
             }
         }
-        
         public string Modificar(Categoria categoriaAModificar)
         {
             string sql = "UPDATE categorias SET nombre=@nombre, estado=@estado WHERE id=@id";

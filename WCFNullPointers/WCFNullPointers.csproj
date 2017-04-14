@@ -107,7 +107,6 @@
     </Compile>
     <Compile Include="Dominio\Categoria.cs" />
     <Compile Include="Dominio\Producto.cs" />
-    <Compile Include="Dominio\Respuesta.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

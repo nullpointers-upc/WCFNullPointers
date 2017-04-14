@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using WCFNullPointers.Dominio;
 
 namespace WCFNullPointers
 {
@@ -13,18 +12,6 @@ namespace WCFNullPointers
     public interface IProductos
     {
         [OperationContract]
-        string CrearProducto(Producto productos);
-
-        [OperationContract]
-        string ObtenerProducto(int id);
-
-        [OperationContract]
-        string ModificarProducto(Producto productos);
-
-        [OperationContract]
-        void EliminarProducto(int id);
-
-        [OperationContract]
-        List<Producto> ListarProductos();
+        void DoWork();
     }
 }

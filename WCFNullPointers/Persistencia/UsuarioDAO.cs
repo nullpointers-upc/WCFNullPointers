@@ -11,8 +11,6 @@ namespace WCFNullPointers.Persistencia
     public class UsuarioDAO
     {
         private string CadenaConexion = "datasource=localhost;database=nullpointers;userid=root";
-        private object conexion;
-
         public string Crear(Usuario usuarioACrear)
         {
             long id;
@@ -35,6 +33,7 @@ namespace WCFNullPointers.Persistencia
                 return Obtener(id);
             }
         }
+
         public string Obtener(long id)
         {
             Usuario usuarioEncontrado = null;
@@ -66,6 +65,7 @@ namespace WCFNullPointers.Persistencia
                 return new JavaScriptSerializer().Serialize(usuarioEncontrado);
             }
         }
+
         public string Login(string codigo, string contrasena)
         {
             Usuario usuarioEncontrado = null;
@@ -95,9 +95,10 @@ namespace WCFNullPointers.Persistencia
                     }
                 }
                 conexion.Close();
-                return Obtener(id);
+                return Obtener(usuarioEncontrado.Id);
             }
         }
+
         public string Modificar(Usuario usuarioAModificar)
         {
             string sql = "UPDATE usuarios SET codigo=@codigo, contrasena=@contrasena, dni=@dni, nombre=@nombre, apellidos=@apellidos, telefono=@telefono WHERE id=@id";

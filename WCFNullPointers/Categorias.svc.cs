@@ -18,15 +18,15 @@ namespace WCFNullPointers
         {
             return categoriaDAO.Crear(categoria);
         }
-        public string Obtenercategoria(int id)
+        public string ObtenerCategoria(int id)
         {
             return categoriaDAO.Obtener(id);
         }
-        public string Modificarcategoria(Categoria categoriaAModificar)
+        public string ModificarCategoria(Categoria categoriaAModificar)
         {
             return categoriaDAO.Modificar(categoriaAModificar);
         }
-        public void Eliminarcategoria(int id)
+        public void EliminarCategoria(int id)
 
         {
             categoriaDAO.Eliminar(id);

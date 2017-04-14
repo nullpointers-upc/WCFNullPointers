@@ -106,7 +106,7 @@
       <DependentUpon>Categorias.svc</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Categoria.cs" />
-    <Compile Include="Dominio\Productos.cs" />
+    <Compile Include="Dominio\Producto.cs" />
     <Compile Include="Dominio\Respuesta.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Global.asax.cs">
@@ -116,8 +116,7 @@
     <Compile Include="IProductos.cs" />
     <Compile Include="IUsuarios.cs" />
     <Compile Include="Persistencia\CategoriaDAO.cs" />
-    <Compile Include="Persistencia\id.cs" />
-    <Compile Include="Persistencia\ProductosDAO.cs" />
+    <Compile Include="Persistencia\ProductoDAO.cs" />
     <Compile Include="Persistencia\UsuarioDAO.cs" />
     <Compile Include="Productos.svc.cs">
       <DependentUpon>Productos.svc</DependentUpon>

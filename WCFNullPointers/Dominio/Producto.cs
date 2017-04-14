@@ -7,7 +7,7 @@ using System.Web;
 namespace WCFNullPointers.Dominio
 {
     [DataContract]
-    public class Productos
+    public class Producto
     {
         [DataMember]
         public int Id { get; set; }
@@ -16,15 +16,14 @@ namespace WCFNullPointers.Dominio
         [DataMember]
         public string Descripcion { get; set; }
         [DataMember]
-        public string Precio { get; set; }
+        public decimal Precio { get; set; }
         [DataMember]
-        public string Descuento { get; set; }
+        public int Descuento { get; set; }
         [DataMember]
         public string Presentacion { get; set; }
         [DataMember]
-        public string CategoriaId { get; set; }
+        public int CategoriaId { get; set; }
         [DataMember]
-        public string Estado { get; set; }
-       
+        public int Estado { get; set; }
     }
 }

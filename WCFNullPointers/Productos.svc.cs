@@ -9,39 +9,34 @@ using WCFNullPointers.Persistencia;
 
 namespace WCFNullPointers
 {
-    // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de clase "Productos" en el código, en svc y en el archivo de configuración a la vez.
-    // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Productos.svc o Productos.svc.cs en el Explorador de soluciones e inicie la depuración.
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Productos" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select Productos.svc or Productos.svc.cs at the Solution Explorer and start debugging.
     public class Productos : IProductos
-    {osDAO = new ProductosDAO();
-        public string CrearProducto
-        private ProductosDAO products(Productos ProductosACrear)
+    {
+        private ProductoDAO productoDAO = new ProductoDAO();
+        public string CrearProducto(Producto producto)
         {
-            return productosDAO.Crear(ProductosACrear);
+            return productoDAO.Crear(producto);
         }
-
-        public string CrearProductos(Productos productosACrear)
+        
+        public string ObtenerProducto(int id)
         {
-            throw new NotImplementedException();
+            return productoDAO.Obtener(id);
         }
-
-        public string ObtenerProductos(int id)
+         
+        public string ModificarProducto(Producto producto)
         {
-            throw new NotImplementedException();
+            return productoDAO.Modificar(producto);
         }
-
-        public string ModificarProductos(Productos productosAModificar)
+        
+        public void EliminarProducto(int id)
         {
-            throw new NotImplementedException();
+            productoDAO.Eliminar(id);
         }
-
-        public void EliminarProductos(int id)
+        
+        public List<Producto> ListarProductos()
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Productos> ListarProductos()
-        {
-            throw new NotImplementedException();
+            return productoDAO.Listar();
         }
     }
 }

@@ -14,5 +14,16 @@ namespace WCFNullPointers
     {
         [OperationContract]
         string CrearCategoria(Categoria categoria);
+        [OperationContract]
+        string ObtenerCategoria(int id);
+
+        [OperationContract]
+        string ModificarCategoria(Categoria categoriaAModificar);
+
+        [OperationContract]
+        void EliminarCategoria(int id);
+
+        [OperationContract]
+        List<Categoria> ListarCategoria();
     }
 }

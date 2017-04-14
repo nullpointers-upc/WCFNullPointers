@@ -28,5 +28,20 @@ namespace WCFNullPointers
         {
             return usuarioDAO.Login(codigo, contrasena);
         }
+        public string ModificarUsuario(Usuario usuarioAModificar)
+        {
+            return usuarioDAO.Modificar(usuarioAModificar);
+        }
+        public void EliminarUsuario(int id)
+
+        {
+            usuarioDAO.Eliminar(id);
+        }
+
+        public List<Usuario> ListarUsuarios()
+        {
+            return usuarioDAO.Listar();
+        }
+    
     }
 }

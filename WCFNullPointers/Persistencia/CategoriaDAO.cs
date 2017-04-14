@@ -40,6 +40,94 @@ namespace WCFNullPointers.Persistencia
                 //  return Obtener(id);
                 return "bingo";
             }
-        }      
+        }
+
+        public string Obtener(long id)
+        {
+            Categoria categoriaEncontrado = null;
+            string sql = "select * from categorias where id = @id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@id", id));
+                    using (MySqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+                            categoriaEncontrado = new Categoria()
+                            {
+                                Id = (int)resultado["id"],
+                                Nombre = (string)resultado["nombre"],
+                                Estado = (int)resultado["estado"]
+                            };
+                        }
+                    }
+                }
+                conexion.Close();
+                return new JavaScriptSerializer().Serialize(categoriaEncontrado);
+            }
+        }
+        public string Modificar(Categoria categoriaAModificar)
+        {
+            string sql = "UPDATE categorias SET nombre=@nombre, estado=@estado WHERE id=@id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@nombre", categoriaAModificar.Nombre));
+                    comando.Parameters.Add(new MySqlParameter("@estado", categoriaAModificar.Estado));
+                    comando.ExecuteNonQuery();
+                }
+                conexion.Close();
+                return Obtener(categoriaAModificar.Id);
+            }
+        }
+
+        public void Eliminar(int id)
+        {
+            string sql = "DELETE FROM categorias WHERE id=@id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@id", id));
+                    comando.ExecuteNonQuery();
+                }
+                conexion.Close();
+            }
+        }
+
+        public List<Categoria> Listar()
+        {
+            List<Categoria> categoriaEncontrados = new List<Categoria>();
+            Categoria categoriaEncontrado = null;
+            string sql = "SELECT * FROM categorias";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    using (MySqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        while (resultado.Read())
+                        {
+                            categoriaEncontrado = new Categoria()
+                            {
+                                Id = (int)resultado["id"],
+                                Nombre = (string)resultado["nombre"],
+                                Estado = (int)resultado["estado"]
+                            };
+                            categoriaEncontrados.Add(categoriaEncontrado);
+                        }
+                    }
+
+                }
+            }
+            return categoriaEncontrados;
+        }
     }
 }

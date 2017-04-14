@@ -18,5 +18,23 @@ namespace WCFNullPointers
         {
             return categoriaDAO.Crear(categoria);
         }
+        public string Obtenercategoria(int id)
+        {
+            return categoriaDAO.Obtener(id);
+        }
+        public string Modificarcategoria(Categoria categoriaAModificar)
+        {
+            return categoriaDAO.Modificar(categoriaAModificar);
+        }
+        public void Eliminarcategoria(int id)
+
+        {
+            categoriaDAO.Eliminar(id);
+        }
+
+        public List<Categoria> ListarCategoria()
+        {
+            return categoriaDAO.Listar();
+        }
     }
 }

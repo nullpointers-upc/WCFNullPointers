@@ -116,6 +116,7 @@
     <Compile Include="IProductos.cs" />
     <Compile Include="IUsuarios.cs" />
     <Compile Include="Persistencia\CategoriaDAO.cs" />
+    <Compile Include="Persistencia\id.cs" />
     <Compile Include="Persistencia\ProductosDAO.cs" />
     <Compile Include="Persistencia\UsuarioDAO.cs" />
     <Compile Include="Productos.svc.cs">

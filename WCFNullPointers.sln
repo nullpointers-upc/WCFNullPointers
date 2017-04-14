@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFNullPointers", "WCFNullPointers\WCFNullPointers.csproj", "{CA25108D-3944-4B19-9E53-EB9EF989CAAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiceTest", "WCFServiceTest\WCFServiceTest.csproj", "{3B03FBDB-45FB-4A4D-BF4F-62C19ED19E88}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA25108D-3944-4B19-9E53-EB9EF989CAAD} = {CA25108D-3944-4B19-9E53-EB9EF989CAAD}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{CA25108D-3944-4B19-9E53-EB9EF989CAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA25108D-3944-4B19-9E53-EB9EF989CAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA25108D-3944-4B19-9E53-EB9EF989CAAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B03FBDB-45FB-4A4D-BF4F-62C19ED19E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B03FBDB-45FB-4A4D-BF4F-62C19ED19E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B03FBDB-45FB-4A4D-BF4F-62C19ED19E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B03FBDB-45FB-4A4D-BF4F-62C19ED19E88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

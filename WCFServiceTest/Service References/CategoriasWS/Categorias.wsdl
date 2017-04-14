@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Categorias" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3401/Categorias.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3401/Categorias.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3401/Categorias.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFNullPointers.Dominio" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICategorias_CrearCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCategoria" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_CrearCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_ObtenerCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCategoria" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_ObtenerCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_ModificarCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarCategoria" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_ModificarCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_EliminarCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarCategoria" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_EliminarCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_ListarCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarCategoria" />
+  </wsdl:message>
+  <wsdl:message name="ICategorias_ListarCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICategorias">
+    <wsdl:operation name="CrearCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategorias/CrearCategoria" message="tns:ICategorias_CrearCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategorias/CrearCategoriaResponse" message="tns:ICategorias_CrearCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategorias/ObtenerCategoria" message="tns:ICategorias_ObtenerCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategorias/ObtenerCategoriaResponse" message="tns:ICategorias_ObtenerCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategorias/ModificarCategoria" message="tns:ICategorias_ModificarCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategorias/ModificarCategoriaResponse" message="tns:ICategorias_ModificarCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategorias/EliminarCategoria" message="tns:ICategorias_EliminarCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategorias/EliminarCategoriaResponse" message="tns:ICategorias_EliminarCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategorias/ListarCategoria" message="tns:ICategorias_ListarCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategorias/ListarCategoriaResponse" message="tns:ICategorias_ListarCategoria_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICategorias" type="tns:ICategorias">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CrearCategoria">
+      <soap:operation soapAction="http://tempuri.org/ICategorias/CrearCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCategoria">
+      <soap:operation soapAction="http://tempuri.org/ICategorias/ObtenerCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarCategoria">
+      <soap:operation soapAction="http://tempuri.org/ICategorias/ModificarCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCategoria">
+      <soap:operation soapAction="http://tempuri.org/ICategorias/EliminarCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCategoria">
+      <soap:operation soapAction="http://tempuri.org/ICategorias/ListarCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Categorias">
+    <wsdl:port name="BasicHttpBinding_ICategorias" binding="tns:BasicHttpBinding_ICategorias">
+      <soap:address location="http://localhost:3401/Categorias.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

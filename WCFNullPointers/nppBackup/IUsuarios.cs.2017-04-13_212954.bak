@@ -26,8 +26,5 @@ namespace WCFNullPointers
 
         [OperationContract]
         void EliminarUsuario(int id);
-        
-        [OperationContract]
-        List<Usuario> ListarUsuarios();        
     }
 }

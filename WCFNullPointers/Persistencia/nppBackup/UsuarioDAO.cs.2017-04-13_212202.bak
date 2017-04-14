@@ -98,7 +98,7 @@ namespace WCFNullPointers.Persistencia
                 return Obtener(id);
             }
         }
-        public string Modificar(Usuario usuarioAModificar)
+        public string Modificar (Usuario usuarioAModificar)
         {
             string sql = "UPDATE usuarios SET codigo=@codigo, contrasena=@contrasena, dni=@dni, nombre=@nombre, apellidos=@apellidos, telefono=@telefono WHERE id=@id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
@@ -139,7 +139,7 @@ namespace WCFNullPointers.Persistencia
             List<Usuario> usuariosEncontrados = new List<Usuario>();
             Usuario usuarioEncontrado = null;
             string sql = "SELECT * FROM usuarios";
-            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 conexion.Open();
                 using (MySqlCommand comando = new MySqlCommand(sql, conexion))
@@ -160,11 +160,10 @@ namespace WCFNullPointers.Persistencia
                             };
                             usuariosEncontrados.Add(usuarioEncontrado);
                         }
-                    }
+                      }
 
                 }
-            }
-            return usuariosEncontrados;
+            return usuarioEncontrados;
         }
     }
 }

@@ -69,50 +69,70 @@ namespace WCFNullPointers.Persistencia
         public string Login(string codigo, string contrasena)
         {
             Usuario usuarioEncontrado = null;
+            Respuesta respuesta = new Respuesta();
             string sql = "select * from usuarios where codigo = @codigo and contrasena = @contrasena";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
-                conexion.Open();
-                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                try
                 {
-                    comando.Parameters.Add(new MySqlParameter("@codigo", codigo));
-                    comando.Parameters.Add(new MySqlParameter("@contrasena", contrasena));
-                    using (MySqlDataReader resultado = comando.ExecuteReader())
+                    conexion.Open();
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
                     {
-                        if (resultado.Read())
+                        comando.Parameters.Add(new MySqlParameter("@codigo", codigo));
+                        comando.Parameters.Add(new MySqlParameter("@contrasena", contrasena));
+                        using (MySqlDataReader resultado = comando.ExecuteReader())
                         {
-                            usuarioEncontrado = new Usuario()
+                            if (resultado.Read())
                             {
-                                Id = (int)resultado["id"],
-                                Codigo = (string)resultado["codigo"],
-                                Contrasena = (string)resultado["contrasena"],
-                                Dni = (string)resultado["dni"],
-                                Nombre = (string)resultado["nombre"],
-                                Apellidos = (string)resultado["apellidos"],
-                                Telefono = (string)resultado["telefono"]
-                            };
+                                usuarioEncontrado = new Usuario()
+                                {
+                                    Id = (int)resultado["id"],
+                                    Codigo = (string)resultado["codigo"],
+                                    Contrasena = (string)resultado["contrasena"],
+                                    Dni = (string)resultado["dni"],
+                                    Nombre = (string)resultado["nombre"],
+                                    Apellidos = (string)resultado["apellidos"],
+                                    Telefono = (string)resultado["telefono"]
+                                };
+                            }
                         }
                     }
+                }
+                catch (Exception e)
+                {
+                    respuesta.code = 200;
+                    respuesta.error = e.ToString();
+                    return new JavaScriptSerializer().Serialize(respuesta);
                 }
                 conexion.Close();
                 return Obtener(id);
             }
         }
-        public string Modificar(Usuario usuarioAModificar)
+        public string Modificar (Usuario usuarioAModificar)
         {
+            Respuesta respuesta = new Respuesta();
             string sql = "UPDATE usuarios SET codigo=@codigo, contrasena=@contrasena, dni=@dni, nombre=@nombre, apellidos=@apellidos, telefono=@telefono WHERE id=@id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
-                conexion.Open();
-                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                try
+                { 
+                    conexion.Open();
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.Add(new MySqlParameter("@codigo",usuarioAModificar.Codigo));
+                        comando.Parameters.Add(new MySqlParameter("@contrasena", usuarioAModificar.Contrasena));
+                        comando.Parameters.Add(new MySqlParameter("@dni", usuarioAModificar.Dni));
+                        comando.Parameters.Add(new MySqlParameter("@nombre", usuarioAModificar.Nombre));
+                        comando.Parameters.Add(new MySqlParameter("@apellidos", usuarioAModificar.Apellidos));
+                        comando.Parameters.Add(new MySqlParameter("@telefono", usuarioAModificar.Telefono));
+                        comando.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
                 {
-                    comando.Parameters.Add(new MySqlParameter("@codigo",usuarioAModificar.Codigo));
-                    comando.Parameters.Add(new MySqlParameter("@contrasena", usuarioAModificar.Contrasena));
-                    comando.Parameters.Add(new MySqlParameter("@dni", usuarioAModificar.Dni));
-                    comando.Parameters.Add(new MySqlParameter("@nombre", usuarioAModificar.Nombre));
-                    comando.Parameters.Add(new MySqlParameter("@apellidos", usuarioAModificar.Apellidos));
-                    comando.Parameters.Add(new MySqlParameter("@telefono", usuarioAModificar.Telefono));
-                    comando.ExecuteNonQuery();
+                    respuesta.code = 200;
+                    respuesta.error = e.ToString();
+                    return new JavaScriptSerializer().Serialize(respuesta);
                 }
                 conexion.Close();
                 return Obtener(usuarioAModificar.Id);
@@ -136,10 +156,10 @@ namespace WCFNullPointers.Persistencia
 
         public List<Usuario> Listar()
         {
-            List<Usuario> usuariosEncontrados = new List<Usuario>();
+            List<Usuario> usuarioEncontrados = new List<Usuario>();
             Usuario usuarioEncontrado = null;
             string sql = "SELECT * FROM usuarios";
-            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            using (MySqlCommand comando = new MySqlCommand(sql, conexion))
             {
                 conexion.Open();
                 using (MySqlCommand comando = new MySqlCommand(sql, conexion))
@@ -147,7 +167,7 @@ namespace WCFNullPointers.Persistencia
                     using(MySqlDataReader resultado = comando.ExecuteReader())
                     { 
                         while (resultado.Read())
-                        {
+                    {
                             usuarioEncontrado = new Usuario()
                             {
                                 Id = (int)resultado["id"],
@@ -157,14 +177,14 @@ namespace WCFNullPointers.Persistencia
                                 Nombre = (string)resultado["nombre"],
                                 Apellidos = (string)resultado["apellidos"],
                                 Telefono = (string)resultado["telefono"]
+
                             };
-                            usuariosEncontrados.Add(usuarioEncontrado);
+                            usuarioEncontrados.Add(usuarioEncontrado);
                         }
-                    }
+                      }
 
                 }
-            }
-            return usuariosEncontrados;
+            return usuarioEncontrados;
         }
     }
 }

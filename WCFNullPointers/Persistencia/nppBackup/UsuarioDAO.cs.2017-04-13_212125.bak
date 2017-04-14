@@ -98,7 +98,7 @@ namespace WCFNullPointers.Persistencia
                 return Obtener(id);
             }
         }
-        public string Modificar(Usuario usuarioAModificar)
+        public string Modificar (Usuario usuarioAModificar)
         {
             string sql = "UPDATE usuarios SET codigo=@codigo, contrasena=@contrasena, dni=@dni, nombre=@nombre, apellidos=@apellidos, telefono=@telefono WHERE id=@id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
@@ -136,10 +136,10 @@ namespace WCFNullPointers.Persistencia
 
         public List<Usuario> Listar()
         {
-            List<Usuario> usuariosEncontrados = new List<Usuario>();
+            List<Usuario> usuarioEncontrados = new List<Usuario>();
             Usuario usuarioEncontrado = null;
             string sql = "SELECT * FROM usuarios";
-            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            using (MySqlCommand comando = new MySqlCommand(sql, conexion))
             {
                 conexion.Open();
                 using (MySqlCommand comando = new MySqlCommand(sql, conexion))
@@ -147,7 +147,7 @@ namespace WCFNullPointers.Persistencia
                     using(MySqlDataReader resultado = comando.ExecuteReader())
                     { 
                         while (resultado.Read())
-                        {
+                    {
                             usuarioEncontrado = new Usuario()
                             {
                                 Id = (int)resultado["id"],
@@ -157,14 +157,14 @@ namespace WCFNullPointers.Persistencia
                                 Nombre = (string)resultado["nombre"],
                                 Apellidos = (string)resultado["apellidos"],
                                 Telefono = (string)resultado["telefono"]
+
                             };
-                            usuariosEncontrados.Add(usuarioEncontrado);
+                            usuarioEncontrados.Add(usuarioEncontrado);
                         }
-                    }
+                      }
 
                 }
-            }
-            return usuariosEncontrados;
+            return usuarioEncontrados;
         }
     }
 }

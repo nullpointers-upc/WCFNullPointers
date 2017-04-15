@@ -34,7 +34,7 @@ namespace WCFNullPointers
             productoDAO.Eliminar(id);
         }
         
-        public List<Producto> ListarProductos()
+        public string ListarProductos()
         {
             return productoDAO.Listar();
         }

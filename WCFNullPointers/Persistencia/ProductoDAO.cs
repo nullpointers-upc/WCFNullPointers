@@ -107,7 +107,7 @@ namespace WCFNullPointers.Persistencia
             }
         }
 
-        public List<Producto> Listar()
+        public string Listar()
         {
             List<Producto> productos = new List<Producto>();
             Producto producto = null;
@@ -137,7 +137,7 @@ namespace WCFNullPointers.Persistencia
                     }
                 }
             }
-            return productos;
+            return new JavaScriptSerializer().Serialize(productos);
         }
     }
 }

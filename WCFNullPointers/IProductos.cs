@@ -25,6 +25,6 @@ namespace WCFNullPointers
         void EliminarProducto(int id);
 
         [OperationContract]
-        List<Producto> ListarProductos();
+        string ListarProductos();
     }
 }

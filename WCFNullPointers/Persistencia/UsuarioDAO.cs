@@ -95,7 +95,10 @@ namespace WCFNullPointers.Persistencia
                     }
                 }
                 conexion.Close();
-                return Obtener(usuarioEncontrado.Id);
+                if (usuarioEncontrado == null)
+                    return null;
+                else
+                    return Obtener(usuarioEncontrado.Id);
             }
         }
 

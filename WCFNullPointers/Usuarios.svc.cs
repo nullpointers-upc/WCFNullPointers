@@ -5,12 +5,11 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using WCFNullPointers.Dominio;
+using WCFNullPointers.Errores;
 using WCFNullPointers.Persistencia;
 
 namespace WCFNullPointers
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Usuarios" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Usuarios.svc or Usuarios.svc.cs at the Solution Explorer and start debugging.
     public class Usuarios : IUsuarios
     {
         private UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -26,14 +25,26 @@ namespace WCFNullPointers
 
         public string LoginUsuario(string codigo, string contrasena)
         {
-            return usuarioDAO.Login(codigo, contrasena);
+            string login = usuarioDAO.Login(codigo, contrasena);           
+            if (login == null)
+            {
+                throw new FaultException<LoginException>(
+                    new LoginException()
+                    {
+                        Codigo = "902",
+                        Descripcion = "Usuario no existe o contraseña incorrecta"
+                    },
+                    new FaultReason("Error de autenticación"));
+            }
+            return login;
         }
+        
         public string ModificarUsuario(Usuario usuarioAModificar)
         {
             return usuarioDAO.Modificar(usuarioAModificar);
         }
+        
         public void EliminarUsuario(int id)
-
         {
             usuarioDAO.Eliminar(id);
         }
@@ -42,6 +53,5 @@ namespace WCFNullPointers
         {
             return usuarioDAO.Listar();
         }
-    
     }
 }

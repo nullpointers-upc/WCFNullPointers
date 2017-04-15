@@ -16,7 +16,6 @@ namespace WCFNullPointers.Persistencia
             long id;
             Respuesta respuesta = new Respuesta();
             string sql = "insert into categorias (nombre, estado) values (@nombre, @estado)";
-
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
                 try
@@ -37,8 +36,7 @@ namespace WCFNullPointers.Persistencia
                     return new JavaScriptSerializer().Serialize(respuesta);
                 }
                 conexion.Close();
-                //  return Obtener(id);
-                return "bingo";
+                return Obtener(id);
             }
         }
 
@@ -77,6 +75,7 @@ namespace WCFNullPointers.Persistencia
                 conexion.Open();
                 using (MySqlCommand comando = new MySqlCommand(sql, conexion))
                 {
+                    comando.Parameters.Add(new MySqlParameter("@id", categoriaAModificar.Id));
                     comando.Parameters.Add(new MySqlParameter("@nombre", categoriaAModificar.Nombre));
                     comando.Parameters.Add(new MySqlParameter("@estado", categoriaAModificar.Estado));
                     comando.ExecuteNonQuery();

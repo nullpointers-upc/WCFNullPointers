@@ -12,7 +12,7 @@ namespace WCFServiceTest
         public void TestMethod1()
         {
             ProductosWS.ProductosClient proxy = new ProductosWS.ProductosClient();
-            string productoX = proxy.CrearProducto(new ProductosWS.Producto()
+            string productoX = proxy.CrearProducto(new ProductoWS.Producto()
             {
                 Nombre = "chaufa",
                 Descripcion = "especial",
@@ -38,7 +38,7 @@ namespace WCFServiceTest
         public void ModificarProductoTest()
         {
             ProductosWS.ProductosClient proxy = new ProductosWS.ProductosClient();
-            string productoX = proxy.ModificarProducto(new ProductosWS.Producto()
+            string productoX = proxy.ModificarProductos(new ProductosWS.Producto()
             {
                 Id = 1,
                 Nombre = "chaufa",
@@ -84,9 +84,9 @@ namespace WCFServiceTest
         {
             ProductosWS.ProductosClient proxy = new ProductosWS.ProductosClient();
             proxy.EliminarProducto(1);
-            string productoX = proxy.ObtenerProducto(1);
-            
-            Assert.IsNull(productoX);
+            ProductosWS.Producto productoEncontrado = proxy.ObtenerProducto("chaufa");
+            Assert.IsNull(productoEncontrado);
         }
+
     }
 }

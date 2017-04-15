@@ -21,7 +21,8 @@ namespace WCFServiceTest
                 Estado = 1,
             });
             JavaScriptSerializer categoriaZ = new JavaScriptSerializer();
-            CategoriaWS.Categoria categoria = (CategoriaWS.Categoria)CategoriaZ.Deserialize<CategoriaWS.Categoria>(categoriaX);
+            CategoriasWS.Categoria categoria = (CategoriasWS.Categoria)categoriaZ.Deserialize<CategoriasWS.Categoria>(categoriaX);
+
             Assert.AreEqual("Menu", categoria.Nombre);
             Assert.AreEqual(1, categoria.Estado);
         }
@@ -30,33 +31,40 @@ namespace WCFServiceTest
         public void ModificarCategoriaTest()
         {
             CategoriasWS.CategoriasClient proxy = new CategoriasWS.CategoriasClient();
-            CategoriasWS.Categoria CategoriaModificado = proxy.ModificarCategoria(new UsuariosWS.Usuario()
+            string CategoriaX = proxy.ModificarCategoria(new CategoriasWS.Categoria()
             {
                 Nombre = "Menu",
                 Estado = 1,
 
             });
-            Assert.AreEqual("Menu", categoriasCreado.Nombre);
-            Assert.AreEqual(1, categoriasCreado.Estado);
+            JavaScriptSerializer categoriaZ = new JavaScriptSerializer();
+            CategoriasWS.Categoria categoria = (CategoriasWS.Categoria)categoriaZ.Deserialize<CategoriasWS.Categoria>(CategoriaX);
+
+            Assert.AreEqual("Menu", categoria.Nombre);
+            Assert.AreEqual(1, categoria.Estado);
         }
 
         [TestMethod]
         public void ObtenerCategoriaTest()
         {
             CategoriasWS.CategoriasClient proxy = new CategoriasWS.CategoriasClient();
-            CategoriasWS.Categoria categoriaEncontrado = proxy.ObtenerCategoria("Menu");
+            string categoriaX = proxy.ObtenerCategoria(1);
+            JavaScriptSerializer categoriaZ = new JavaScriptSerializer();
+            CategoriasWS.Categoria Categoria = (CategoriasWS.Categoria)categoriaZ.Deserialize<CategoriasWS.Categoria>(categoriaX);
 
-            Assert.AreEqual("Menu", categoriaEncontrado.Nombre);
-            Assert.AreEqual(1, categoriaEncontrado.Estado);
+            Assert.AreEqual(3, Categoria.Id);
+            Assert.AreEqual("Menu", Categoria.Nombre);
+            Assert.AreEqual(1, Categoria.Estado);
         }
 
         [TestMethod]
         public void EliminarCategoriaTest()
         {
             CategoriasWS.CategoriasClient proxy = new CategoriasWS.CategoriasClient();
-            proxy.EliminarCategoria("Menu");
-            CategoriasWS.Categoria categoriaEncontrado = proxy.ObtenerCategoria("Menu");
-            Assert.IsNull(categoriaEncontrado);
+            proxy.EliminarCategoria(3);
+            string CategoriaX = proxy.ObtenerCategoria(3);
+
+            Assert.IsNull(CategoriaX);
         }
     }
 }

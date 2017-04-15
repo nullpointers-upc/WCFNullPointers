@@ -108,6 +108,8 @@
     <Compile Include="Dominio\Categoria.cs" />
     <Compile Include="Dominio\Producto.cs" />
     <Compile Include="Dominio\Usuario.cs" />
+    <Compile Include="Errores\LoginException.cs" />
+    <Compile Include="Errores\RepetidoException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -127,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Errores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

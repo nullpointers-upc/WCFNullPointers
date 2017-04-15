@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using WCFNullPointers.Dominio;
-using WCFNullPointers.Errores;
 using WCFNullPointers.Persistencia;
 
 namespace WCFNullPointers
@@ -25,26 +24,14 @@ namespace WCFNullPointers
 
         public string LoginUsuario(string codigo, string contrasena)
         {
-            string login = usuarioDAO.Login(codigo, contrasena);           
-            if (login == null)
-            {
-                throw new FaultException<LoginException>(
-                    new LoginException()
-                    {
-                        Codigo = "902",
-                        Descripcion = "Usuario no existe o contraseña incorrecta"
-                    },
-                    new FaultReason("Error de autenticación"));
-            }
-            return login;
+            return usuarioDAO.Login(codigo, contrasena);
         }
-        
         public string ModificarUsuario(Usuario usuarioAModificar)
         {
             return usuarioDAO.Modificar(usuarioAModificar);
         }
-        
         public void EliminarUsuario(int id)
+
         {
             usuarioDAO.Eliminar(id);
         }
@@ -53,5 +40,6 @@ namespace WCFNullPointers
         {
             return usuarioDAO.Listar();
         }
+    
     }
 }

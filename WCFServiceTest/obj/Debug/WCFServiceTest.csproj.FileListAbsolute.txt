@@ -1,0 +1,8 @@
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\obj\Debug\WCFServiceTest.csprojResolveAssemblyReference.cache
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\WCFServiceTest.dll.config
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\WCFServiceTest.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\WCFServiceTest.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\obj\Debug\WCFServiceTest.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\obj\Debug\WCFServiceTest.pdb

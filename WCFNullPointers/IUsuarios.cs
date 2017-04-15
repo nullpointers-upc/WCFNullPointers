@@ -13,13 +13,13 @@ namespace WCFNullPointers
     [ServiceContract]
     public interface IUsuarios
     {
-        [FaultContract(typeof(LoginException))]
         [OperationContract]
         string CrearUsuario(Usuario usuarioACrear);
 
         [OperationContract]
         string ObtenerUsuario(int id);
 
+        [FaultContract(typeof(LoginException))]
         [OperationContract]
         string LoginUsuario(string codigo, string contrasena);
 

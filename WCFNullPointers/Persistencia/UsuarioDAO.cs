@@ -110,6 +110,7 @@ namespace WCFNullPointers.Persistencia
                 conexion.Open();
                 using (MySqlCommand comando = new MySqlCommand(sql, conexion))
                 {
+                    comando.Parameters.Add(new MySqlParameter("@id", usuarioAModificar.Id));
                     comando.Parameters.Add(new MySqlParameter("@codigo",usuarioAModificar.Codigo));
                     comando.Parameters.Add(new MySqlParameter("@contrasena", usuarioAModificar.Contrasena));
                     comando.Parameters.Add(new MySqlParameter("@dni", usuarioAModificar.Dni));

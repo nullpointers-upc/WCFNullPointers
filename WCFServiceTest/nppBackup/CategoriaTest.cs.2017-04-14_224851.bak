@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ServiceModel;
-using System.Web.Script.Serialization;
 
 namespace WCFServiceTest
 {
@@ -15,17 +14,17 @@ namespace WCFServiceTest
         public void TestMethod1()
         {
             CategoriasWS.CategoriasClient proxy = new CategoriasWS.CategoriasClient();
-            string categoriaX = proxy.CrearCategoria(new CategoriasWS.Categoria()
+            proxy.CrearCategoria(new CategoriasWS.Categoria()
             {
+
                 Nombre = "Menu",
                 Estado = 1,
+
             });
-            JavaScriptSerializer categoriaZ = new JavaScriptSerializer();
-            CategoriaWS.Categoria categoria = (CategoriaWS.Categoria)CategoriaZ.Deserialize<CategoriaWS.Categoria>(categoriaX);
-            Assert.AreEqual("Menu", categoria.Nombre);
-            Assert.AreEqual(1, categoria.Estado);
+
+            Assert.AreEqual("Menu", categoriasCreado.Nombre);
+            Assert.AreEqual(1, categoriasCreado.Estado);
         }
-        
         [TestMethod]
         public void ModificarCategoriaTest()
         {

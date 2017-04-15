@@ -65,23 +65,22 @@ namespace WCFServiceTest
             JavaScriptSerializer usuarioZ = new JavaScriptSerializer();
             UsuariosWS.Usuario usuario = (UsuariosWS.Usuario)usuarioZ.Deserialize<UsuariosWS.Usuario>(usuarioX);
             
-            Assert.AreEqual(2, usuario.Id);
-            Assert.AreEqual("222222", usuario.Codigo);
-            Assert.AreEqual("cha123456", usuario.Contrasena);
-            Assert.AreEqual("12345678", usuario.Dni);
-            Assert.AreEqual("Santiago", usuario.Nombre);
-            Assert.AreEqual("Saavedra", usuario.Apellidos);
-            Assert.AreEqual("1234567", usuario.Telefono);
+            Assert.AreEqual("222222", usuarioEncontrado.Codigo);
+            Assert.AreEqual("cha123456", usuarioEncontrado.Contrasena);
+            Assert.AreEqual("12345678", usuarioEncontrado.Dni);
+            Assert.AreEqual("Santiago", usuarioEncontrado.Nombre);
+            Assert.AreEqual("Saavedra", usuarioEncontrado.Apellidos);
+            Assert.AreEqual("1234567", usuarioEncontrado.Telefono);
         }
 
         [TestMethod]
         public void EliminarUsuarioTest()
         {
             UsuariosWS.UsuariosClient proxy = new UsuariosWS.UsuariosClient();
-            proxy.EliminarUsuario(2);
-            string usuarioX = proxy.ObtenerUsuario(2);
-            
-            Assert.IsNull(usuarioX);
+            proxy.EliminarUsuario("222222");
+            UsuariosWS.Usuario usuarioEncontrado = proxy.ObtenerUsuario("222222");
+            Assert.IsNull(usuarioEncontrado);
         }
+
     }
 }

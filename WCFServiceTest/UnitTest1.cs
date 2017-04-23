@@ -38,7 +38,7 @@ namespace WCFServiceTest
             UsuariosWS.UsuariosClient proxy = new UsuariosWS.UsuariosClient();
             string usuarioX = proxy.ModificarUsuario(new UsuariosWS.Usuario()
             {
-                Id = 2,
+                Id = 10,
                 Codigo = "222222",
                 Contrasena = "cha123456",
                 Dni = "12345678",

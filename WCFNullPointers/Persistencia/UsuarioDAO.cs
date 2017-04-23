@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using System.Linq;
-using System.Web;
 using WCFNullPointers.Dominio;
 using System.Web.Script.Serialization;
 
@@ -26,6 +23,8 @@ namespace WCFNullPointers.Persistencia
                     comando.Parameters.Add(new MySqlParameter("@nombre", usuarioACrear.Nombre));
                     comando.Parameters.Add(new MySqlParameter("@apellidos", usuarioACrear.Apellidos));
                     comando.Parameters.Add(new MySqlParameter("@telefono", usuarioACrear.Telefono));
+                    comando.Parameters.Add(new MySqlParameter("@email", usuarioACrear.Email));
+                    comando.Parameters.Add(new MySqlParameter("@flagCliente", usuarioACrear.FlagCliente));
                     comando.ExecuteNonQuery();
                     id = comando.LastInsertedId;
                 }
@@ -56,7 +55,9 @@ namespace WCFNullPointers.Persistencia
                                 Dni = (string)resultado["dni"],
                                 Nombre = (string)resultado["nombre"],
                                 Apellidos = (string)resultado["apellidos"],
-                                Telefono = (string)resultado["telefono"]
+                                Telefono = (string)resultado["telefono"],
+                                Email = (resultado["email"] == null) ? string.Empty : resultado["email"].ToString(),
+                                FlagCliente = (int)resultado["flagCliente"]
                             };
                         }
                     }
@@ -89,7 +90,9 @@ namespace WCFNullPointers.Persistencia
                                 Dni = (string)resultado["dni"],
                                 Nombre = (string)resultado["nombre"],
                                 Apellidos = (string)resultado["apellidos"],
-                                Telefono = (string)resultado["telefono"]
+                                Telefono = (string)resultado["telefono"],
+                                Email = (resultado["email"] == null) ? string.Empty : resultado["email"].ToString(),
+                                FlagCliente = (int)resultado["flagCliente"]
                             };
                         }
                     }
@@ -117,6 +120,8 @@ namespace WCFNullPointers.Persistencia
                     comando.Parameters.Add(new MySqlParameter("@nombre", usuarioAModificar.Nombre));
                     comando.Parameters.Add(new MySqlParameter("@apellidos", usuarioAModificar.Apellidos));
                     comando.Parameters.Add(new MySqlParameter("@telefono", usuarioAModificar.Telefono));
+                    comando.Parameters.Add(new MySqlParameter("@email", usuarioAModificar.Email));
+                    comando.Parameters.Add(new MySqlParameter("@flagCliente", usuarioAModificar.FlagCliente));
                     comando.ExecuteNonQuery();
                 }
                 conexion.Close();
@@ -161,7 +166,9 @@ namespace WCFNullPointers.Persistencia
                                 Dni = (string)resultado["dni"],
                                 Nombre = (string)resultado["nombre"],
                                 Apellidos = (string)resultado["apellidos"],
-                                Telefono = (string)resultado["telefono"]
+                                Telefono = (string)resultado["telefono"],
+                                Email = (resultado["email"] == null) ? string.Empty : resultado["email"].ToString(),
+                                FlagCliente = (int)resultado["flagCliente"]
                             };
                             usuariosEncontrados.Add(usuarioEncontrado);
                         }

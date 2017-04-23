@@ -95,6 +95,7 @@
   <ItemGroup>
     <Content Include="Categorias.svc" />
     <Content Include="Global.asax" />
+    <Content Include="PedidosDetalle.svc" />
     <Content Include="Productos.svc" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -106,6 +107,7 @@
       <DependentUpon>Categorias.svc</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Categoria.cs" />
+    <Compile Include="Dominio\PedidoDetalle.cs" />
     <Compile Include="Dominio\Producto.cs" />
     <Compile Include="Dominio\Respuesta.cs" />
     <Compile Include="Dominio\Usuario.cs" />
@@ -115,9 +117,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ICategorias.cs" />
+    <Compile Include="IPedidosDetalle.cs" />
     <Compile Include="IProductos.cs" />
     <Compile Include="IUsuarios.cs" />
+    <Compile Include="PedidosDetalle.svc.cs">
+      <DependentUpon>PedidosDetalle.svc</DependentUpon>
+    </Compile>
     <Compile Include="Persistencia\CategoriaDAO.cs" />
+    <Compile Include="Persistencia\PedidoDetalleDAO.cs" />
     <Compile Include="Persistencia\ProductoDAO.cs" />
     <Compile Include="Persistencia\UsuarioDAO.cs" />
     <Compile Include="Productos.svc.cs">

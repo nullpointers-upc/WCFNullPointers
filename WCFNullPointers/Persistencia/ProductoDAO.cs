@@ -14,7 +14,6 @@ namespace WCFNullPointers.Persistencia
         public string Crear(Producto producto)
         {
             long id;
-            Respuesta respuesta = new Respuesta();
             string sql = "insert into productos (nombre, descripcion, precio, descuento, presentacion, categoriaId, estado) values (@nombre, @descripcion, @precio, @descuento, @presentacion, @categoriaId, @estado)";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {

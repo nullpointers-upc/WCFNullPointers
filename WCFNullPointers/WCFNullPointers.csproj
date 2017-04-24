@@ -95,9 +95,12 @@
   <ItemGroup>
     <Content Include="Categorias.svc" />
     <Content Include="Global.asax" />
+    <Content Include="Pedidos.svc" />
     <Content Include="Productos.svc" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Service1.svc" />
+    <Content Include="Service2.svc" />
     <Content Include="Usuarios.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -106,6 +109,7 @@
       <DependentUpon>Categorias.svc</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Categoria.cs" />
+    <Compile Include="Dominio\Pedido.cs" />
     <Compile Include="Dominio\Producto.cs" />
     <Compile Include="Dominio\Respuesta.cs" />
     <Compile Include="Dominio\Usuario.cs" />
@@ -115,15 +119,26 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ICategorias.cs" />
+    <Compile Include="IPedidos.cs" />
     <Compile Include="IProductos.cs" />
     <Compile Include="IUsuarios.cs" />
+    <Compile Include="Pedidos.svc.cs">
+      <DependentUpon>Pedidos.svc</DependentUpon>
+    </Compile>
     <Compile Include="Persistencia\CategoriaDAO.cs" />
+    <Compile Include="Persistencia\PedidoDAO.cs" />
     <Compile Include="Persistencia\ProductoDAO.cs" />
     <Compile Include="Persistencia\UsuarioDAO.cs" />
     <Compile Include="Productos.svc.cs">
       <DependentUpon>Productos.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service1.svc.cs">
+      <DependentUpon>Service1.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service2.svc.cs">
+      <DependentUpon>Service2.svc</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.svc.cs">
       <DependentUpon>Usuarios.svc</DependentUpon>
     </Compile>

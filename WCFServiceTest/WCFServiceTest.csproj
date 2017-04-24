@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CategoriaTest.cs" />
+    <Compile Include="Pedido.cs" />
     <Compile Include="ProductosTest.cs" />
     <Compile Include="Service References\CategoriasWS\Reference.cs">
       <AutoGen>True</AutoGen>

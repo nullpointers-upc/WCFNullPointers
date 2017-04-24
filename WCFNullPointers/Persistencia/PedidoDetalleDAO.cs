@@ -9,7 +9,7 @@ namespace WCFNullPointers.Persistencia
 {
     public class PedidoDetalleDAO
     {
-        private string CadenaConexion = "Data Source=(local);Initial Catalog=servicioweb;Integrated Security=SSPI;";
+        private string CadenaConexion = "datasource=localhost;database=nullpointers;userid=root";
         public PedidoDetalle Crear(PedidoDetalle pedidoDetalle)
         {
             long id;

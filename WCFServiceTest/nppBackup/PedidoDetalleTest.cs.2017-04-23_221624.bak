@@ -125,8 +125,8 @@ namespace WCFServiceTest
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string tramaJson = reader.ReadToEnd();
             JavaScriptSerializer js = new JavaScriptSerializer();
-            List<PedidoDetalle> pedidosDetalle = js.Deserialize<List<PedidoDetalle>>(tramaJson);
-            Assert.AreEqual(2, pedidosDetalle.Count);
+            List<Trabajador> trabajadoresObtenido = js.Deserialize<List<Trabajador>>(tramaJson);
+            Assert.AreEqual(2, trabajadoresObtenido.Count);
         }
     }
 }

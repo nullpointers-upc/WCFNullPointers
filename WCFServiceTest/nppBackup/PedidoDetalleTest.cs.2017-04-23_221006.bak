@@ -119,14 +119,14 @@ namespace WCFServiceTest
         public void Test5ListarPedidosDetalle()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.
-                Create("http://localhost:3401/PedidosDetalle.svc/PedidosDetalle");
+                Create("http://localhost:1125/Trabajadores.svc/Trabajadores");
             request.Method = "GET";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string tramaJson = reader.ReadToEnd();
             JavaScriptSerializer js = new JavaScriptSerializer();
-            List<PedidoDetalle> pedidosDetalle = js.Deserialize<List<PedidoDetalle>>(tramaJson);
-            Assert.AreEqual(2, pedidosDetalle.Count);
+            List<Trabajador> trabajadoresObtenido = js.Deserialize<List<Trabajador>>(tramaJson);
+            Assert.AreEqual(2, trabajadoresObtenido.Count);
         }
     }
 }

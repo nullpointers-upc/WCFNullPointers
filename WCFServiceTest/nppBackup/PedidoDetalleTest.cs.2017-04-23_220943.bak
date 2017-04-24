@@ -114,19 +114,5 @@ namespace WCFServiceTest
             PedidoDetalle pedidoDetalle = js.Deserialize<PedidoDetalle>(tramaJson);
             Assert.IsNull(pedidoDetalle);
         }
-        
-        [TestMethod]
-        public void Test5ListarPedidosDetalle()
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.
-                Create("http://localhost:3401/PedidosDetalle.svc/PedidosDetalle");
-            request.Method = "GET";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string tramaJson = reader.ReadToEnd();
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<PedidoDetalle> pedidosDetalle = js.Deserialize<List<PedidoDetalle>>(tramaJson);
-            Assert.AreEqual(2, pedidosDetalle.Count);
-        }
     }
 }

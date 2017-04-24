@@ -11,7 +11,6 @@ namespace WCFServiceTest
     [TestClass]
     public class PedidoDetalleTest
     {
-        [TestMethod]
         public void Test1CrearPedidoDetalle()
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
@@ -93,40 +92,9 @@ namespace WCFServiceTest
             Assert.AreEqual(1, pedidoDetalle.PedidoId);
             Assert.AreEqual(2, pedidoDetalle.ProductoId);
             Assert.AreEqual(2, pedidoDetalle.Cantidad);
-            Assert.AreEqual(40, pedidoDetalle.Precio);
-            Assert.AreEqual(80, pedidoDetalle.Total);
+            Assert.AreEqual(30, pedidoDetalle.Precio);
+            Assert.AreEqual(60, pedidoDetalle.Total);
         }
-        
-        [TestMethod]
-        public void Test4EliminarPedidoDetalle()
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.
-                Create("http://localhost:3401/PedidosDetalle.svc/PedidosDetalle/2");
-            request.Method = "DELETE";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            HttpWebRequest request2 = (HttpWebRequest)WebRequest.
-                Create("http://localhost:3401/PedidosDetalle.svc/PedidosDetalle/2");
-            request2.Method = "GET";
-            HttpWebResponse response2 = (HttpWebResponse)request2.GetResponse();
-            StreamReader reader = new StreamReader(response2.GetResponseStream());
-            string tramaJson = reader.ReadToEnd();
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            PedidoDetalle pedidoDetalle = js.Deserialize<PedidoDetalle>(tramaJson);
-            Assert.IsNull(pedidoDetalle);
-        }
-        
-        [TestMethod]
-        public void Test5ListarPedidosDetalle()
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.
-                Create("http://localhost:3401/PedidosDetalle.svc/PedidosDetalle");
-            request.Method = "GET";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string tramaJson = reader.ReadToEnd();
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<PedidoDetalle> pedidosDetalle = js.Deserialize<List<PedidoDetalle>>(tramaJson);
-            Assert.AreEqual(2, pedidosDetalle.Count);
-        }
+
     }
 }

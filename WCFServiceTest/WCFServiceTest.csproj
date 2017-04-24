@@ -49,16 +49,13 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="CategoriaTest.cs" />
-    <Compile Include="PedidoDetalle.cs" />
-    <Compile Include="PedidoDetalleTest.cs" />
+    <Compile Include="Pedido.cs" />
     <Compile Include="ProductosTest.cs" />
     <Compile Include="Service References\CategoriasWS\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -172,12 +169,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WCFNullPointers\WCFNullPointers.csproj">
-      <Project>{CA25108D-3944-4B19-9E53-EB9EF989CAAD}</Project>
-      <Name>WCFNullPointers</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

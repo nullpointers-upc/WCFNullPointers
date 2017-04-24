@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WCFNullPointers.Persistencia
+{
+    public class PedidosDetalleDAO
+    {
+        private string CadenaConexion = "Data Source=(local);Initial Catalog=servicioweb;Integrated Security=SSPI;";
+        public PedidoDetalle Crear(PedidoDetalle pedidoDetalle)
+        {
+            long id;
+            string sql = "insert into pedidosDetalle (pedidoId, productoId, cantidad, precio, total) values (@pedidoId, @productoId, @cantidad, @precio, @total)";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@pedidoId", producto.PedidoId));
+                    comando.Parameters.Add(new MySqlParameter("@productoId", producto.ProductoId));
+                    comando.Parameters.Add(new MySqlParameter("@cantidad", producto.Cantidad));
+                    comando.Parameters.Add(new MySqlParameter("@precio", producto.Precio));
+                    comando.Parameters.Add(new MySqlParameter("@total", producto.Total));
+                    comando.ExecuteNonQuery();
+                    id = comando.LastInsertedId;
+                }
+                conexion.Close();
+                return Obtener(id);
+            }
+        }
+        
+        public PedidosDetalle Obtener(long id)
+        {
+            PedidosDetalle pedidosDetalle = null;
+            string sql = "select * from pedidosDetalle where id = @id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@id", id));
+                    using (MySqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+                            pedidosDetalle = new Trabajador()
+                            {
+                                Dni = (string)resultado["dni"],
+                                Nombre = (string)resultado["nombre"],
+                                Telefono = (string)resultado["telefono"],
+                                Sexo = (bool)resultado["sexo"],
+                                Sueldo = (decimal)resultado["sueldo"]
+                            };
+                        }
+                    }
+                }
+            }
+            return trabajadorEncontrado;
+        }
+    }
+}

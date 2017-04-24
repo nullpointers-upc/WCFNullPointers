@@ -1,0 +1,88 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using WCFNullPointers.Dominio;
+
+namespace WCFNullPointers.Persistencia
+{
+    public class PedidoDetalleDAO
+    {
+        private string CadenaConexion = "Data Source=(local);Initial Catalog=servicioweb;Integrated Security=SSPI;";
+        public PedidoDetalle Crear(PedidoDetalle pedidoDetalle)
+        {
+            long id;
+            string sql = "insert into pedidosDetalle (pedidoId, productoId, cantidad, precio, total) values (@pedidoId, @productoId, @cantidad, @precio, @total)";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@pedidoId", producto.PedidoId));
+                    comando.Parameters.Add(new MySqlParameter("@productoId", producto.ProductoId));
+                    comando.Parameters.Add(new MySqlParameter("@cantidad", producto.Cantidad));
+                    comando.Parameters.Add(new MySqlParameter("@precio", producto.Precio));
+                    comando.Parameters.Add(new MySqlParameter("@total", producto.Total));
+                    comando.ExecuteNonQuery();
+                    id = comando.LastInsertedId;
+                }
+                conexion.Close();
+                return Obtener(id);
+            }
+        }
+        
+        public PedidoDetalle Obtener(long id)
+        {
+            PedidoDetalle pedidoDetalle = null;
+            string sql = "select * from pedidosDetalle where id = @id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@id", id));
+                    using (MySqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+                            pedidoDetalle = new Trabajador()
+                            {
+                                Id = (int)resultado["id"],
+                                PedidoId = (int)resultado["pedidoId"],
+                                ProductoId = (int)resultado["productoId"],
+                                Cantidad = (int)resultado["cantidad"],
+                                Precio = (decimal)resultado["precio"],
+                                Total = (decimal)resultado["total"]
+                            };
+                        }
+                    }
+                }
+            }
+            return pedidoDetalle;
+        }
+        
+        public PedidoDetalle Modificar(PedidoDetalle pedidoDetalle)
+        {
+            string sql = "update pedidosDetalle set nombre=@nombre, descripcion=@descripcion, precio=@precio, descuento=@descuento, presentacion=@presentacion, categoriaId=@categoriaId, estado = @estado where id=@id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@id", producto.Id));
+                    comando.Parameters.Add(new MySqlParameter("@nombre", producto.Nombre));
+                    comando.Parameters.Add(new MySqlParameter("@descripcion", producto.Descripcion));
+                    comando.Parameters.Add(new MySqlParameter("@precio", producto.Precio));
+                    comando.Parameters.Add(new MySqlParameter("@descuento", producto.Descuento));
+                    comando.Parameters.Add(new MySqlParameter("@presentacion", producto.Presentacion));
+                    comando.Parameters.Add(new MySqlParameter("@categoriaId", producto.CategoriaId));
+                    comando.Parameters.Add(new MySqlParameter("@estado", producto.Estado));
+                    comando.ExecuteNonQuery();
+                }
+                conexion.Close();
+                return Obtener(producto.Id);
+            }
+        }
+    }
+}

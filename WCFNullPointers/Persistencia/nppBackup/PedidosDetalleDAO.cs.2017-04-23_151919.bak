@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WCFNullPointers.Persistencia
+{
+    public class PedidosDetalleDAO
+    {
+        private string CadenaConexion = "Data Source=(local);Initial Catalog=servicioweb;Integrated Security=SSPI;";
+        public PedidosDetalle Crear(PedidosDetalle pedidosDetalle)
+        {
+            long id;
+            string sql = "insert into pedidosDetalle (pedidoId, productoId, cantidad, precio, total) values (@pedidoId, @productoId, @cantidad, @precio, @total)";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@nombre", producto.Nombre));
+                    comando.Parameters.Add(new MySqlParameter("@descripcion", producto.Descripcion));
+                    comando.Parameters.Add(new MySqlParameter("@precio", producto.Precio));
+                    comando.Parameters.Add(new MySqlParameter("@descuento", producto.Descuento));
+                    comando.Parameters.Add(new MySqlParameter("@presentacion", producto.Presentacion));
+                    comando.Parameters.Add(new MySqlParameter("@categoriaId", producto.CategoriaId));
+                    comando.Parameters.Add(new MySqlParameter("@estado", producto.Estado));
+                    comando.ExecuteNonQuery();
+                    id = comando.LastInsertedId;
+                }
+                conexion.Close();
+                return Obtener(id);
+            }
+        }
+        
+    }
+}

@@ -4,7 +4,5 @@ C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTe
 C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\WCFServiceTest.pdb
 C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\obj\Debug\WCFServiceTest.dll
 C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\obj\Debug\WCFServiceTest.pdb
-C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\ApplicationInsights.config
-C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\WCFNullPointers.dll
-C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\MySql.Data.dll
-C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\WCFNullPointers.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml

@@ -40,7 +40,7 @@ namespace WCFNullPointers.Persistencia
         public  Pedido Obtener(int id)
         {
             Pedido pedido = null;
-            string sql = "select * from Pedidos where id = @id";
+            string sql = "select * from pedidos where id = @id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
                 conexion.Open();
@@ -57,12 +57,14 @@ namespace WCFNullPointers.Persistencia
                                 Fecha = (DateTime)resultado["fecha"],
                                 UsuarioId = (int)resultado["usuarioId"],
                                 Direccion = (string)resultado["direccion"],
-                                Estado = (int)resultado["estado"],
-                                Total=(decimal)resultado["total"]
+                                Estado = (int)resultado["estado"]
                             };
                         }
                     }
                 }
+
+                pedido.detalles = ListarDetalles(pedido.Id);
+
                 return pedido;
             }
 
@@ -98,7 +100,7 @@ namespace WCFNullPointers.Persistencia
                 conexion.Open();
                 using (MySqlCommand comando = new MySqlCommand(sql, conexion))
                 {
-                    comando.Parameters.Add(new MySqlParameter("@id", id));
+                    comando.Parameters.Add(new MySqlParameter("@id", Id));
                     comando.ExecuteNonQuery();
                 }
                 conexion.Close();
@@ -109,7 +111,7 @@ namespace WCFNullPointers.Persistencia
         public List<Pedido> Listar()
         {
             List<Pedido> pedidos = new List<Pedido>();
-            Producto pedido = null;
+            Pedido pedido = null;
             string sql = "select * from pedidos";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
@@ -137,5 +139,49 @@ namespace WCFNullPointers.Persistencia
             }
             return pedidos;
         }
+
+
+        public List<PedidoDetalle> ListarDetalles(int id)
+        {
+            List<PedidoDetalle> pedidosDetalle = new List<PedidoDetalle>();
+            PedidoDetalle pedidoDetalle = null;
+            string sql = "select * from pedidosDetalle where pedidoId = " + id;
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    using (MySqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        while (resultado.Read())
+                        {
+                            pedidoDetalle = new PedidoDetalle()
+                            {
+                                Id = (int)resultado["id"],
+                                PedidoId = (int)resultado["pedidoId"],
+                                ProductoId = (int)resultado["productoId"],
+                                Cantidad = (int)resultado["cantidad"],
+                                Precio = (decimal)resultado["precio"],
+                                Total = (decimal)resultado["total"]
+                            };
+                            pedidosDetalle.Add(pedidoDetalle);
+                        }
+                    }
+                }
+            }
+            return pedidosDetalle;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

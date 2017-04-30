@@ -24,6 +24,8 @@ namespace WCFNullPointers.Dominio
         public int Estado { get; set; }
         [DataMember]
         public decimal Total { get; set; }
+        [DataMember]
+        public List<PedidoDetalle> detalles { get; set; }
 
     }
 }

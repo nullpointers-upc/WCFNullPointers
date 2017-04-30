@@ -18,3 +18,23 @@ c:\users\root\documents\visual studio 2015\Projects\WCFNullPointers\WCFNullPoint
 c:\users\root\documents\visual studio 2015\Projects\WCFNullPointers\WCFNullPointers\obj\Debug\WCFNullPointers.dll
 c:\users\root\documents\visual studio 2015\Projects\WCFNullPointers\WCFNullPointers\obj\Debug\WCFNullPointers.pdb
 C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\MySql.Data.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\obj\Debug\WCFNullPointers.csprojResolveAssemblyReference.cache
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\obj\Debug\WCFNullPointers.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\obj\Debug\WCFNullPointers.pdb
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\ApplicationInsights.config
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\WCFNullPointers.dll.config
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\WCFNullPointers.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\WCFNullPointers.pdb
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.Web.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\MySql.Data.dll
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.Web.xml
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.ApplicationInsights.xml

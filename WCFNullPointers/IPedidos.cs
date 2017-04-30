@@ -31,7 +31,7 @@ namespace WCFNullPointers
         void EliminarPedido(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "Pedidos", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", UriTemplate = "Pedidos", ResponseFormat = WebMessageFormat.Json)]
         List<Pedido> ListarPedidos();
     }
 }

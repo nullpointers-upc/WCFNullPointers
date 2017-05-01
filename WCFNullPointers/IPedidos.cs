@@ -27,6 +27,7 @@ namespace WCFNullPointers
         [WebInvoke(Method = "PUT", UriTemplate = "Pedidos", ResponseFormat = WebMessageFormat.Json)]
         Pedido ModificarPedido(Pedido pedidos);
 
+
         // PENDIENTE: AGREGAR DETALLE
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "Pedidos/{id}", ResponseFormat = WebMessageFormat.Json)]

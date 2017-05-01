@@ -28,12 +28,27 @@ namespace WCFNullPointers.Persistencia
                     comando.Parameters.Add(new MySqlParameter("@direccion", pedido.Direccion));
                     comando.Parameters.Add(new MySqlParameter("@estado", pedido.Estado));
                     comando.Parameters.Add(new MySqlParameter("@total", pedido.Total));
-                    comando.ExecuteNonQuery();
+                    
                     id = comando.LastInsertedId;
                 }
-                conexion.Close();
-                return Obtener((int)id);
+
+                sql = "insert into pedidosDetalle (pedidoId, productoId, cantidad, precio, total) values (@pedidoId, @productoId, @cantidad, @precio, @total)";
+                foreach (PedidoDetalle detalle in pedido.detalles)
+                {
+                    using(MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.Add(new MySqlParameter("@pedidoId", id));
+                        comando.Parameters.Add(new MySqlParameter("@productoId", detalle.ProductoId));
+                        comando.Parameters.Add(new MySqlParameter("@cantidad", detalle.Cantidad));
+                        comando.Parameters.Add(new MySqlParameter("@precio", detalle.Precio));
+                        comando.Parameters.Add(new MySqlParameter("@total", detalle.Total));
+                        comando.ExecuteNonQuery();
+                    }
+                }
+                    conexion.Close();
+                    return Obtener((int)id);
             }
+          
         }
 
         public Pedido Obtener(int id)
@@ -66,37 +81,24 @@ namespace WCFNullPointers.Persistencia
             }
         }
 
-        public Pedido Modificar(Pedido pedido)
-        {
-            string sql = "update pedidos set fecha=@fecha, usuarioId=@usuarioId, direccion=@direccion, estado=@estado, total=@total where id=@id";
-            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
-            {
-                conexion.Open();
-                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
-                {
-                    comando.Parameters.Add(new MySqlParameter("@fecha", pedido.Fecha));
-                    comando.Parameters.Add(new MySqlParameter("@usuarioId", pedido.UsuarioId));
-                    comando.Parameters.Add(new MySqlParameter("@direccion", pedido.Direccion));
-                    comando.Parameters.Add(new MySqlParameter("@estado", pedido.Estado));
-                    comando.Parameters.Add(new MySqlParameter("@total", pedido.Total));
-                    comando.ExecuteNonQuery();
-                }
-                conexion.Close();
-                return Obtener(pedido.Id);
-            }
-        }
-
+      
         public void Eliminar (int Id)
         {
-            string sql = "delete from pedidos where id=@id";
+            string sql = "delete from pedidosDetalle where id=@id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
-                conexion.Open();
-                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
-                {
+                  conexion.Open();
+                  using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                   {
                     comando.Parameters.Add(new MySqlParameter("@id", Id));
                     comando.ExecuteNonQuery();
-                }
+                   }
+                    sql = "delete from pedidos where id=@id";
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.Add(new MySqlParameter("@id", Id));
+                        comando.ExecuteNonQuery();
+                    }
                 conexion.Close();
             }
         }

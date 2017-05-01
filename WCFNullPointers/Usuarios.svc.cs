@@ -49,7 +49,7 @@ namespace WCFNullPointers
             usuarioDAO.Eliminar(id);
         }
 
-        public List<Usuario> ListarUsuarios()
+        public string ListarUsuarios()
         {
             return usuarioDAO.Listar();
         }

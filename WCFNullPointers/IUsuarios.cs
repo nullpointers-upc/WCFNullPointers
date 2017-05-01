@@ -30,6 +30,6 @@ namespace WCFNullPointers
         void EliminarUsuario(int id);
         
         [OperationContract]
-        List<Usuario> ListarUsuarios();        
+        string ListarUsuarios();        
     }
 }

@@ -28,12 +28,6 @@ namespace WCFNullPointers
             return pedidoDAO.Listar();
         }
 
-        public Pedido ModificarPedido(Pedido pedidos)
-        {
-            Pedido pedido = null;
-            return pedidoDAO.Modificar(pedido);
-        }
-
         public Pedido ObtenerPedido(string id)
         {
             return pedidoDAO.Obtener(int.Parse(id));

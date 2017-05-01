@@ -71,7 +71,8 @@ namespace WCFNullPointers.Persistencia
                                 Fecha = (DateTime)resultado["fecha"],
                                 UsuarioId = (int)resultado["usuarioId"],
                                 Direccion = (string)resultado["direccion"],
-                                Estado = (int)resultado["estado"]
+                                Estado = (int)resultado["estado"],
+                                Total = (decimal)resultado["total"]
                             };
                         }
                     }
@@ -81,7 +82,6 @@ namespace WCFNullPointers.Persistencia
             }
         }
 
-      
         public void Eliminar (int Id)
         {
             string sql = "delete from pedidosDetalle where id=@id";
@@ -123,7 +123,8 @@ namespace WCFNullPointers.Persistencia
                                 Fecha = (DateTime)resultado["fecha"],
                                 UsuarioId = (int)resultado["usuarioId"],
                                 Direccion = (string)resultado["direccion"],
-                                Estado = (int)resultado["estado"]
+                                Estado = (int)resultado["estado"],
+                                Total = (decimal)resultado["total"]
                             };
                             pedido.detalles = ListarDetalles(pedido.Id);
                             pedidos.Add(pedido);
@@ -139,7 +140,7 @@ namespace WCFNullPointers.Persistencia
         {
             List<PedidoDetalle> pedidosDetalle = new List<PedidoDetalle>();
             PedidoDetalle pedidoDetalle = null;
-            string sql = "select * from pedidosDetalle where pedidoId = " + id;
+            string sql = "select pd.*, pr.nombre productoNombre from pedidosDetalle pd join productos pr on pr.id = pd.productoId where pd.pedidoId = " + id;
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
                 conexion.Open();
@@ -154,6 +155,7 @@ namespace WCFNullPointers.Persistencia
                                 Id = (int)resultado["id"],
                                 PedidoId = (int)resultado["pedidoId"],
                                 ProductoId = (int)resultado["productoId"],
+                                ProductoNombre = (string)resultado["productoNombre"],
                                 Cantidad = (int)resultado["cantidad"],
                                 Precio = (decimal)resultado["precio"],
                                 Total = (decimal)resultado["total"]

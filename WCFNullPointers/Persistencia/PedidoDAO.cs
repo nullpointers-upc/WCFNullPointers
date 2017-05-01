@@ -34,10 +34,9 @@ namespace WCFNullPointers.Persistencia
                 conexion.Close();
                 return Obtener((int)id);
             }
-
         }
 
-        public  Pedido Obtener(int id)
+        public Pedido Obtener(int id)
         {
             Pedido pedido = null;
             string sql = "select * from pedidos where id = @id";
@@ -62,13 +61,9 @@ namespace WCFNullPointers.Persistencia
                         }
                     }
                 }
-
                 pedido.detalles = ListarDetalles(pedido.Id);
-
                 return pedido;
             }
-
-
         }
 
         public Pedido Modificar(Pedido pedido)
@@ -89,7 +84,6 @@ namespace WCFNullPointers.Persistencia
                 conexion.Close();
                 return Obtener(pedido.Id);
             }
-
         }
 
         public void Eliminar (int Id)
@@ -105,7 +99,6 @@ namespace WCFNullPointers.Persistencia
                 }
                 conexion.Close();
             }
-
         }
 
         public List<Pedido> Listar()
@@ -130,7 +123,6 @@ namespace WCFNullPointers.Persistencia
                                 Direccion = (string)resultado["direccion"],
                                 Estado = (int)resultado["estado"],
                                 Total = (decimal)resultado["total"],
-
                             };
                             pedidos.Add(pedido);
                         }
@@ -139,7 +131,6 @@ namespace WCFNullPointers.Persistencia
             }
             return pedidos;
         }
-
 
         public List<PedidoDetalle> ListarDetalles(int id)
         {
@@ -171,17 +162,5 @@ namespace WCFNullPointers.Persistencia
             }
             return pedidosDetalle;
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

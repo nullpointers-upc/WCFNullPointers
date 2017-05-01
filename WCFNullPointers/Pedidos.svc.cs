@@ -10,14 +10,11 @@ using WCFNullPointers.Persistencia;
 
 namespace WCFNullPointers
 {
-
     public class Pedidos : IPedidos
     {
         private PedidoDAO pedidoDAO = new PedidoDAO();
-
         public Pedido CrearPedido(Pedido pedido)
         {
-        
              return pedidoDAO.Crear(pedido);
         }
 
@@ -35,7 +32,6 @@ namespace WCFNullPointers
         {
             Pedido pedido = null;
             return pedidoDAO.Modificar(pedido);
-
         }
 
         public Pedido ObtenerPedido(string id)

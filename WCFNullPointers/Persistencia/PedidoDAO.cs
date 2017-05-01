@@ -121,13 +121,14 @@ namespace WCFNullPointers.Persistencia
                                 Fecha = (DateTime)resultado["fecha"],
                                 UsuarioId = (int)resultado["usuarioId"],
                                 Direccion = (string)resultado["direccion"],
-                                Estado = (int)resultado["estado"],
-                                Total = (decimal)resultado["total"],
+                                Estado = (int)resultado["estado"]
                             };
+                            pedido.detalles = ListarDetalles(pedido.Id);
                             pedidos.Add(pedido);
                         }
                     }
                 }
+                conexion.Close();
             }
             return pedidos;
         }
@@ -161,6 +162,23 @@ namespace WCFNullPointers.Persistencia
                 }
             }
             return pedidosDetalle;
+        }
+
+        public Pedido ActualizarEstado(int id, int estado)
+        {
+            string sql = "update pedidos set estado=@estado where id=@id";
+            using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new MySqlParameter("@id", id));
+                    comando.Parameters.Add(new MySqlParameter("@estado", estado));
+                    comando.ExecuteNonQuery();
+                }
+                conexion.Close();
+                return Obtener(id);
+            }
         }
     }
 }

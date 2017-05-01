@@ -38,5 +38,9 @@ namespace WCFNullPointers
         {
             return pedidoDAO.Obtener(int.Parse(id));
         }
+        public Pedido ActualizarEstadoPedido(string id, string estado)
+        {
+            return pedidoDAO.ActualizarEstado(int.Parse(id), int.Parse(estado));
+        }
     }
 }

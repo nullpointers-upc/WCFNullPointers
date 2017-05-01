@@ -33,13 +33,15 @@ namespace WCFNullPointers
         [WebInvoke(Method = "DELETE", UriTemplate = "Pedidos/{id}", ResponseFormat = WebMessageFormat.Json)]
         void EliminarPedido(string id);
 
-        // PENDIENTE: AGREGAR DETALLE
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "Pedidos", ResponseFormat = WebMessageFormat.Json)]
         List<Pedido> ListarPedidos();
 
-        // PENDIENTE: NUEVO METODO PARA ACTUALIZAR EL ESTADO DEL PEDIDO (ACEPTADO, CANCELADO...)
+        // PENDIENTE: NUEVO METODO PARA ACTUALIZAR EL ESTADO DEL PEDIDO
         // SE ENVIARÁ EL ID DEL PEDIDO Y EL NUEVO ESTADO
         // EN ESTE MÉTODO SE USARÁ LA MENSAJERÍA
+        [OperationContract]
+        [WebInvoke(Method = "PUT", UriTemplate = "Pedidos/{id}/{estado}", ResponseFormat = WebMessageFormat.Json)]
+        Pedido ActualizarEstadoPedido(string id, string estado);
     }
 }

@@ -19,6 +19,9 @@ namespace WCFNullPointers.Dominio
         public int UsuarioId { get; set; }
 
         [DataMember]
+        public string Nombre { get; set; }
+
+        [DataMember]
         public string Direccion { get; set; }
 
         [DataMember(IsRequired = false)]

@@ -13,7 +13,8 @@ namespace WCFNullPointers.Dominio
         public int Id { get; set; }
 
         [DataMember]
-        public DateTime  Fecha  { get; set; }
+        //public DateTime  Fecha  { get; set; }
+        public string Fecha { get; set; }
 
         [DataMember]
         public int UsuarioId { get; set; }

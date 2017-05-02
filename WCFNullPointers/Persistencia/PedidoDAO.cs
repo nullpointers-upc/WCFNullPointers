@@ -17,18 +17,18 @@ namespace WCFNullPointers.Persistencia
         {
             long id;
             Respuesta respuesta = new Respuesta();
-            string sql = "insert into pedidos (fecha, usuarioId, direccion, estado, total) values (@fecha, @usuarioId, @direccion, @estado, @total)";
+            //string sql = "insert into pedidos (fecha, usuarioId, direccion, estado, total) values (@fecha, @usuarioId, @direccion, @estado, @total)";
+            string sql = "insert into pedidos (usuarioId, direccion, estado, total) values (@usuarioId, @direccion, @estado, @total)";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
                 conexion.Open();
                 using (MySqlCommand comando = new MySqlCommand(sql, conexion))
                 {
-                    comando.Parameters.Add(new MySqlParameter("@fecha", pedido.Fecha));
+                    //comando.Parameters.Add(new MySqlParameter("@fecha", pedido.Fecha));
                     comando.Parameters.Add(new MySqlParameter("@usuarioId", pedido.UsuarioId));
                     comando.Parameters.Add(new MySqlParameter("@direccion", pedido.Direccion));
                     comando.Parameters.Add(new MySqlParameter("@estado", pedido.Estado));
                     comando.Parameters.Add(new MySqlParameter("@total", pedido.Total));
-                    
                     id = comando.LastInsertedId;
                 }
 
@@ -45,10 +45,9 @@ namespace WCFNullPointers.Persistencia
                         comando.ExecuteNonQuery();
                     }
                 }
-                    conexion.Close();
-                    return Obtener((int)id);
+                conexion.Close();
+                return Obtener((int)id);
             }
-          
         }
 
         public Pedido Obtener(int id)
@@ -68,7 +67,7 @@ namespace WCFNullPointers.Persistencia
                             pedido = new Pedido()
                             {
                                 Id = (int)resultado["id"],
-                                Fecha = (DateTime)resultado["fecha"],
+                                Fecha = Convert.ToDateTime(resultado["fecha"]).ToString("dd/MM/yyyy"),
                                 UsuarioId = (int)resultado["usuarioId"],
                                 Nombre = (string)resultado["nombre"],
                                 Direccion = (string)resultado["direccion"],
@@ -88,18 +87,18 @@ namespace WCFNullPointers.Persistencia
             string sql = "delete from pedidosDetalle where id=@id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
-                  conexion.Open();
-                  using (MySqlCommand comando = new MySqlCommand(sql, conexion))
-                   {
+                conexion.Open();
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
                     comando.Parameters.Add(new MySqlParameter("@id", Id));
                     comando.ExecuteNonQuery();
-                   }
-                    sql = "delete from pedidos where id=@id";
-                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
-                    {
-                        comando.Parameters.Add(new MySqlParameter("@id", Id));
-                        comando.ExecuteNonQuery();
-                    }
+                }
+                sql = "delete from pedidos where id=@id";
+                using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                {
+                     comando.Parameters.Add(new MySqlParameter("@id", Id));
+                     comando.ExecuteNonQuery();
+                }
                 conexion.Close();
             }
         }
@@ -121,7 +120,8 @@ namespace WCFNullPointers.Persistencia
                             pedido = new Pedido()
                             {
                                 Id = (int)resultado["id"],
-                                Fecha = (DateTime)resultado["fecha"],
+                              //Fecha = (DateTime)resultado["fecha"],
+                                Fecha = Convert.ToDateTime(resultado["fecha"]).ToString("dd/MM/yyyy"),
                                 UsuarioId = (int)resultado["usuarioId"],
                                 Direccion = (string)resultado["direccion"],
                                 Estado = (int)resultado["estado"],

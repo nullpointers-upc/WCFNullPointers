@@ -54,7 +54,7 @@ namespace WCFNullPointers.Persistencia
         public Pedido Obtener(int id)
         {
             Pedido pedido = null;
-            string sql = "select usuarios.nombre from pedidos inner join usuarios on pedidos.usuarioId =usuarios.Id";
+            string sql = "select pedidos.*, usuarios.nombre from pedidos join usuarios on pedidos.usuarioId =usuarios.Id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
                 conexion.Open();
@@ -70,6 +70,7 @@ namespace WCFNullPointers.Persistencia
                                 Id = (int)resultado["id"],
                                 Fecha = (DateTime)resultado["fecha"],
                                 UsuarioId = (int)resultado["usuarioId"],
+                                Nombre = (string)resultado["nombre"],
                                 Direccion = (string)resultado["direccion"],
                                 Estado = (int)resultado["estado"],
                                 Total = (decimal)resultado["total"]

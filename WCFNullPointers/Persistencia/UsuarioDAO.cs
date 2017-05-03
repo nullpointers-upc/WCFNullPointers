@@ -11,7 +11,7 @@ namespace WCFNullPointers.Persistencia
         public string Crear(Usuario usuarioACrear)
         {
             long id;
-            string sql = "insert into usuarios (codigo, contrasena, dni, nombre, apellidos, telefono) values (@codigo, @contrasena, @dni, @nombre, @apellidos, @telefono)";
+            string sql = "insert into usuarios (codigo, contrasena, dni, nombre, apellidos, telefono, email, flagCliente) values (@codigo, @contrasena, @dni, @nombre, @apellidos, @telefono, @email, @flagCliente)";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
                 conexion.Open();
@@ -107,7 +107,7 @@ namespace WCFNullPointers.Persistencia
 
         public string Modificar(Usuario usuarioAModificar)
         {
-            string sql = "UPDATE usuarios SET codigo=@codigo, contrasena=@contrasena, dni=@dni, nombre=@nombre, apellidos=@apellidos, telefono=@telefono WHERE id=@id";
+            string sql = "UPDATE usuarios SET codigo=@codigo, contrasena=@contrasena, dni=@dni, nombre=@nombre, apellidos=@apellidos, telefono=@telefono, email=@email, flagCliente=@flagCliente WHERE id=@id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
                 conexion.Open();

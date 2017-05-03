@@ -38,3 +38,14 @@ C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.S
 C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.Web.xml
 C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Leo\Documents\GitHub\WCFNullPointers\WCFNullPointers\bin\Microsoft.ApplicationInsights.xml
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\Common.Logging.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\IronSharp.Core.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\IronSharp.IronMQ.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\Newtonsoft.Json.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\System.Net.Http.Formatting.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\Common.Logging.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\Common.Logging.xml
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\IronSharp.Core.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\IronSharp.IronMQ.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\Newtonsoft.Json.xml
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFNullPointers\bin\System.Net.Http.Formatting.xml

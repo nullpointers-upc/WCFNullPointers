@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 using WCFNullPointers.Dominio;
-
+using IronSharp.Core;
+using IronSharp.IronMQ;
 
 namespace WCFNullPointers.Persistencia
 {
@@ -172,6 +173,7 @@ namespace WCFNullPointers.Persistencia
 
         public Pedido ActualizarEstado(int id, int estado)
         {
+            Pedido pedido = null;
             string sql = "update pedidos set estado=@estado where id=@id";
             using (MySqlConnection conexion = new MySqlConnection(CadenaConexion))
             {
@@ -183,8 +185,29 @@ namespace WCFNullPointers.Persistencia
                     comando.ExecuteNonQuery();
                 }
                 conexion.Close();
-                return Obtener(id);
+                pedido = Obtener(id);
+                RegistrarPedido(pedido);
+                return pedido;
             }
+        }
+        public void RegistrarPedido(Pedido pedido)
+        {
+            var ironMq = IronSharp.IronMQ.Client.New(new IronClientConfig
+            {
+                ProjectId = "59096539bfade7000b7a00a7",
+                Token = "n4stGu8UQmGWDPlYLLOY",
+                Host = "mq-aws-eu-west-1-1.iron.io",
+                Scheme = "http",
+                Port = 80
+            });
+            Mensaje mensaje = new Mensaje()
+            {
+                PedidoId = pedido.Id,
+                ClienteId = pedido.UsuarioId,
+                Estado = pedido.Estado
+            };
+            QueueClient queue = ironMq.Queue("nullpointers");
+            string messageId = queue.Post(new JavaScriptSerializer().Serialize(mensaje));
         }
     }
 }

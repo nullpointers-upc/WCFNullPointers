@@ -6,3 +6,14 @@ C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTe
 C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\obj\Debug\WCFServiceTest.pdb
 C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Common.Logging.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\IronSharp.Core.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\IronSharp.IronMQ.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Common.Logging.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Common.Logging.xml
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\IronSharp.Core.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\IronSharp.IronMQ.pdb
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\root\Documents\Visual Studio 2015\Projects\WCFNullPointers\WCFServiceTest\bin\Debug\System.Net.Http.Formatting.xml
